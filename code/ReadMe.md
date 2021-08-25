@@ -3,3 +3,17 @@
 
 ### (1) First download the D2-net features of MVTec AD dataset from [Here](https://arxiv.org/pdf/2008.12577.pdf) and place them under D2_features folder
 ### (2) Change the directory of the D2_Net features at the configuration file for each category in './configs/
+
+
+## Install anaconda env
+```conda env create -f environment.yml```
+
+
+```conda activate torch```
+
+## Download the D2-net features of MVTec AD dataset from [Here](https://arxiv.org/pdf/2008.12577.pdf) and place them under D2_features folder
+
+
+## Precomputed features
+Can be downloaded from:
+https://drive.google.com/drive/folders/1rZn-UHM_EcIXauJ0wRysQbh0mHQoNrfY?usp=sharing
