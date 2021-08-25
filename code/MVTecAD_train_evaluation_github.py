@@ -471,22 +471,11 @@ mean_rocauc2_rk_l2 = torch.tensor(rocauc2_dataset_rk_l2)
 cardauc_dataset_rk_l2 = torch.tensor(cardauc_dataset_rk_l2)
 cardauc_dataset_nv = torch.tensor(cardauc_dataset_nv)
 
-# mean_dataset_rk_csd = torch.tensor(mean_dataset_rk_csd)
-# cardauc_dataset_rf = torch.tensor(cardauc_dataset_rf)
-# mean_rocauc_rk_csd=torch.tensor(rocauc_dataset_rk_csd)
-# mean_rocauc2_rk_csd=torch.tensor(rocauc2_dataset_rk_csd)
-# cardauc_dataset_rk_csd = torch.tensor(cardauc_dataset_rk_csd)
-# finding the mean of the dataset
-# print('====================Mean of mvtec dataset objects using thresold================')
-# print('avg of naive is {:0.2f}'.format(mean_dataset_nv.mean().numpy()))
-# print('avg of rf is {:0.2f}'.format(mean_dataset_rf.mean().numpy()))
-# print('avg of rank csd is {:0.2f}'.format(mean_dataset_rk_csd.mean().numpy()))
-# print('avg of rank l2 is {:0.2f}'.format(mean_dataset_rk_l2.mean().numpy()))
 
 print('====================Mean ROCAUC of mvtec dataset objects================')
 print('avg of naive is {:0.2f}'.format(mean_rocauc_nv.mean().numpy()))
 print('avg of rf is {:0.2f}'.format(mean_rocauc_rf.mean().numpy()))
-# print('avg of rank csd is {:0.2f}'.format(mean_rocauc_rk_csd.mean().numpy()))
+
 print('avg of rank l2 is {:0.2f}'.format(mean_rocauc_rk_l2.float().mean().numpy()))
 
 print('====================Mean ROCAUC of mvtec dataset objects negative mah================')
@@ -495,64 +484,5 @@ print('avg of rf is {:0.2f}'.format(mean_rocauc2_rf.mean().numpy()))
 # print('avg of rank csd is {:0.2f}'.format(mean_rocauc2_rk_csd.mean().numpy()))
 print('avg of rank l2 is {:0.2f}'.format(mean_rocauc2_rk_l2.mean().numpy()))
 
-# print('====================Mean Card ROCAUC of mvtec dataset objects using ================')
-# print('avg of naive is {:0.2f}'.format(cardauc_dataset_nv .mean().numpy()))
-# print('avg of rf is {:0.2f}'.format(cardauc_dataset_rf.mean().numpy()))
-# print('avg of rank csd is {:0.2f}'.format(cardauc_dataset_rk_csd.mean().numpy()))
-# print('avg of rank l2 is {:0.2f}'.format(cardauc_dataset_rk_l2.mean().numpy()))
 
 
-# print table latex format
-from tabulate import tabulate
-
-import latextable
-
-rows = [['object', 'naive', 'RFS', 'RANK', 'RANK(L2)'],
-        [object_names_list[0], mean_rocauc_nv[0], mean_rocauc_rf[0]],
-        [object_names_list[1], mean_rocauc_nv[1], mean_rocauc_rf[1]],
-        [object_names_list[2], mean_rocauc_nv[2], mean_rocauc_rf[2]],
-        [object_names_list[3], mean_rocauc_nv[3], mean_rocauc_rf[3]],
-        [object_names_list[4], mean_rocauc_nv[4], mean_rocauc_rf[4]],
-        [object_names_list[5], mean_rocauc_nv[5], mean_rocauc_rf[5]],
-        [object_names_list[6], mean_rocauc_nv[6], mean_rocauc_rf[6]],
-        [object_names_list[7], mean_rocauc_nv[7], mean_rocauc_rf[7]],
-        [object_names_list[8], mean_rocauc_nv[8], mean_rocauc_rf[8]],
-        [object_names_list[9], mean_rocauc_nv[9], mean_rocauc_rf[9]],
-        [object_names_list[10], mean_rocauc_nv[10], mean_rocauc_rf[10]],
-        [object_names_list[11], mean_rocauc_nv[11], mean_rocauc_rf[11]],
-        [object_names_list[12], mean_rocauc_nv[12], mean_rocauc_rf[12]],
-        [object_names_list[13], mean_rocauc_nv[13], mean_rocauc_rf[13]],
-        [object_names_list[14], mean_rocauc_nv[14], mean_rocauc_rf[14]],
-        ['Average ROC', mean_rocauc_nv.mean(), mean_rocauc_rf.mean()]
-        ]
-
-print('ROC AUC using AUC(labels test,energy_test2)')
-rows22 = [['object', 'dist naive', 'dist RFS', 'dist RANK', 'dist RANK(L2)'],
-          [object_names_list[0], mean_rocauc2_nv[0], mean_rocauc2_rf[0], mean_rocauc2_rk_csd[0], mean_rocauc2_rk_l2[0]],
-          [object_names_list[1], mean_rocauc2_nv[1], mean_rocauc2_rf[1], mean_rocauc2_rk_csd[1], mean_rocauc2_rk_l2[1]],
-          [object_names_list[2], mean_rocauc2_nv[2], mean_rocauc2_rf[2], mean_rocauc2_rk_csd[2], mean_rocauc2_rk_l2[2]],
-          [object_names_list[3], mean_rocauc2_nv[3], mean_rocauc2_rf[3], mean_rocauc2_rk_csd[3], mean_rocauc2_rk_l2[3]],
-          [object_names_list[4], mean_rocauc2_nv[4], mean_rocauc2_rf[4], mean_rocauc2_rk_csd[4], mean_rocauc2_rk_l2[4]],
-          [object_names_list[5], mean_rocauc2_nv[5], mean_rocauc2_rf[5], mean_rocauc2_rk_csd[5], mean_rocauc2_rk_l2[5]],
-          [object_names_list[6], mean_rocauc2_nv[6], mean_rocauc2_rf[6], mean_rocauc2_rk_csd[6], mean_rocauc2_rk_l2[6]],
-          [object_names_list[7], mean_rocauc2_nv[7], mean_rocauc2_rf[7], mean_rocauc2_rk_csd[7], mean_rocauc2_rk_l2[7]],
-          [object_names_list[8], mean_rocauc2_nv[8], mean_rocauc2_rf[8], mean_rocauc2_rk_csd[8], mean_rocauc2_rk_l2[8]],
-          [object_names_list[9], mean_rocauc2_nv[9], mean_rocauc2_rf[9], mean_rocauc2_rk_csd[9], mean_rocauc2_rk_l2[9]],
-          [object_names_list[10], mean_rocauc2_nv[10], mean_rocauc2_rf[10], mean_rocauc2_rk_csd[10],
-           mean_rocauc2_rk_l2[10]],
-          [object_names_list[11], mean_rocauc2_nv[11], mean_rocauc2_rf[11], mean_rocauc2_rk_csd[11],
-           mean_rocauc2_rk_l2[11]],
-          [object_names_list[12], mean_rocauc2_nv[12], mean_rocauc2_rf[12], mean_rocauc2_rk_csd[12],
-           mean_rocauc2_rk_l2[12]],
-          [object_names_list[13], mean_rocauc2_nv[13], mean_rocauc2_rf[13], mean_rocauc2_rk_csd[13],
-           mean_rocauc2_rk_l2[13]],
-          [object_names_list[14], mean_rocauc2_nv[14], mean_rocauc2_rf[14], mean_rocauc2_rk_csd[14],
-           mean_rocauc2_rk_l2[14]],
-          ['Average ROC', mean_rocauc2_nv.mean(), mean_rocauc2_rf.mean(), mean_rocauc2_rk_csd.mean(),
-           mean_rocauc2_rk_l2.mean()]
-          ]
-
-print('Tabulate Table:')
-print(tabulate(rows22, headers='firstrow'))
-print('\nTabulate Latex:')
-print(tabulate(rows22, headers='firstrow', tablefmt='latex'))
