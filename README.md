@@ -8,7 +8,7 @@ I will keep update this page. I will upload the test model once the paper get pu
 
 <p align="center">
 <img src="https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect
-/blob/main/imgs/Energy_based RFS_v2.pdf" width="1024">
+/blob/main/img/Energy_based RFS.png" width="1024">
 </p>
 
 ## Multiple-Instance-Based-Video-Anomaly-Detection-Using-Deep-Temporal-Encoding-Decoding Results and Comparisons
