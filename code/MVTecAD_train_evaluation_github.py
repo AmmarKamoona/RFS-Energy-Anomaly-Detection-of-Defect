@@ -7,7 +7,7 @@ import torch
 import matplotlib.pyplot as plt
 import pandas as pd
 from mvtec_train import PossionMLE
-from utils.mvtec_utils import get_mvtec_v2
+from utils.mvtec_utils import get_mvtec
 from sklearn.metrics import roc_auc_score, confusion_matrix, auc, roc_curve
 from sklearn.metrics import precision_recall_fscore_support as prf
 from utils.utilis import detetect_keypoint_desc
@@ -390,7 +390,7 @@ for obj in range(10, 12):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     #load the data
-    data = get_mvtec_v2(args, with_vaild=False)
+    data = get_mvtec(args, with_vaild=False)
     cardnality_loader = data[1]
     if args.fewshots:
         err, err, err, err, data = get_mvtec_v2(args, train_only=False, with_vaild=False)
