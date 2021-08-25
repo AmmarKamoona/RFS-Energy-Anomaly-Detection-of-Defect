@@ -16,9 +16,12 @@ Implemention of the paper "Anomaly Detection of Defect using Energy of Point Pat
 <img src="https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect/blob/main/Img/AUC_MVTec.png" width="650">
 </p>
 
-
+ ROC Performance MVTec AD
 <p align="center">
-<img src="https://github.com/AmmarKamoona/Multiple-Instance-Based-Video-Anomaly-Detection-Using-Deep-Temporal-Encoding-Decoding/blob/main/images/ROC_UCF_V4-1.png" width="650">
+<img src="https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect/blob/main/Img/roc_2.svg" width="650">
+</p>
+<p align="center">
+<img src="https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect/blob/main/Img/roc_3.svg" width="650">
 </p>
 
  AUC Performance on ShanghaiTech
