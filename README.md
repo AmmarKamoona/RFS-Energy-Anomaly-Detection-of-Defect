@@ -29,7 +29,7 @@ Implemention of the paper "Anomaly Detection of Defect using Energy of Point Pat
   - Comparison provided against [DifferNet](https://arxiv.org/pdf/2008.12577.pdf), [DROCC](https://arxiv.org/pdf/2002.12718.pdf), [PatchSVDD](https://arxiv.org/pdf/2011.08785.pdf),[DeepSVDD](http://proceedings.mlr.press/v80/ruff18a.html),[GeoTrans](https://arxiv.org/pdf/1805.10917.pdf), and [HTDGM](https://arxiv.org/pdf/2104.14535.pdf).
   
   <p align="center">
-<img src="https://github.com/AmmarKamoona/Multiple-Instance-Based-Video-Anomaly-Detection-Using-Deep-Temporal-Encoding-Decoding/blob/main/images/AUC_Shang.PNG" width="650">
+<img src="https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect/blob/main/Img/MVTec_fewshot_results.png" width="650">
 </p>
 
 <p align="center">
