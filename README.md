@@ -3,7 +3,7 @@ Implemention of the paper "Anomaly Detection of Defect using Energy of Point Pat
 
 
 <p align="center">
-<img src="https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect/blob/main/Img/Energy_based_RFS.png" width="1024">
+<img src="https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect/blob/main/Img/proposed_approach.png" width="1024">
 </p>
 
 ## Anomaly Detection of Defect using Energy of Point Pattern Features within Random Finite Set Framework Results and Comparisons
