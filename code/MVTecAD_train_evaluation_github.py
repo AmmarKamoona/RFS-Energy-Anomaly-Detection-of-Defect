@@ -1,6 +1,5 @@
-# %%  %% Deep RFS for Defect detection using Multivariate Mixture normal distributionn on the high dimension
-# Mahlabounce distance by Ammar Kamoona
-# in this code the rank gmm_l2 is turn off due to error that does not go away
+# %% RFS Energy anomaly detection of Defect using Multivariate Gaussian of normal samples
+# by Ammar Kamoona @2021
 
 import numpy as np
 import numpy
