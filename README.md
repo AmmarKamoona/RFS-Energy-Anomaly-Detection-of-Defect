@@ -1,14 +1,10 @@
 # RFS-Energy-Anomaly-Detection-of-Defect
 Implemention of the paper "Anomaly Detection of Defect using Energy of Point Pattern Features within Random Finite Set Framework"
 
-Implementation of the paper "Multiple Instance-Based Video Anomaly Detection Using Deep Temporal Encoding-Decoding"
-
-
-I will keep update this page. I will upload the test model once the paper get published..-->
 
 <p align="center">
 <img src="https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect
-/blob/main/img/Energy_based RFS.png" width="1024">
+/blob/main/Img/Energy_based RFS.png" width="1024">
 </p>
 
 ## Multiple-Instance-Based-Video-Anomaly-Detection-Using-Deep-Temporal-Encoding-Decoding Results and Comparisons
