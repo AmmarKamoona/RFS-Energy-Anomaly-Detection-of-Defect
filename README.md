@@ -4,7 +4,7 @@ Implemention of the paper "Anomaly Detection of Defect using Energy of Point Pat
 
 <p align="center">
 <img src="https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect
-/blob/main/Img/Energy_based RFS.png" width="1024">
+/blob/main/Img/Energy_based_RFS.png" width="1024">
 </p>
 
 ## Multiple-Instance-Based-Video-Anomaly-Detection-Using-Deep-Temporal-Encoding-Decoding Results and Comparisons
