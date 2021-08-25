@@ -87,7 +87,7 @@ def eval_MHD(model, dataloaders, device, args, with_card, with_rank, lamda_hat, 
     energy_test2 = []
     RFS_set_like=[]
     labels_test = []
-    card_energy_test = []
+ 
     args.pick_topk=0.03
     for batch in testloader_set:
         x = batch[0]
@@ -114,7 +114,7 @@ def eval_MHD(model, dataloaders, device, args, with_card, with_rank, lamda_hat, 
         # new card_loss calculation using unnormlaized likeliihood
         card_loss = Possion_UnnorLoglike(lamda_hat, card.float().to(device), with_NLL=False)
         card_loss2 = Possion_UnnorLoglike(lamda_hat, card.float().to(device), with_NLL=True)
-        # print('card_loss2',card_loss2)
+      
 
         # sum the loglilihood of all smaples based on NAive log
         if with_card:
