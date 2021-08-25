@@ -6,7 +6,7 @@
 
 ```conda activate torch```
 
-## Download the D2-net features of MVTec AD dataset from [Here](https://arxiv.org/pdf/2008.12577.pdf) and place them under D2_features folder
+## Download the D2-net features of MVTec AD dataset from [Here](https://arxiv.org/pdf/2008.12577.pdf) and place them under d2-net-features directory
 
 
 ## Precomputed features
