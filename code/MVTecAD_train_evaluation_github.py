@@ -10,7 +10,6 @@ from mvtec_train import PossionMLE
 from utils.mvtec_utils import get_mvtec
 from sklearn.metrics import roc_auc_score, confusion_matrix, auc, roc_curve
 from sklearn.metrics import precision_recall_fscore_support as prf
-from utils.utilis import detetect_keypoint_desc
 from torchvision import transforms as T
 import torchvision
 from PIL import Image
