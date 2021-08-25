@@ -7,7 +7,7 @@ import torch
 import matplotlib.pyplot as plt
 import pandas as pd
 from mvtec_train import PossionMLE
-from utils.mvtec_utils import get_mvtec, get_mvtec_data_cvs, get_mvtec_v2
+from utils.mvtec_utils import get_mvtec_v2
 from sklearn.metrics import roc_auc_score, confusion_matrix, auc, roc_curve
 from sklearn.metrics import precision_recall_fscore_support as prf
 from utils.utilis import detetect_keypoint_desc
@@ -389,37 +389,25 @@ for obj in range(10, 12):
     os.environ["CUDA_VISIBLE_DEVICES"] = ",".join(str(x) for x in args.gpu)
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+    #load the data
+    data = get_mvtec_v2(args, with_vaild=False)
+    cardnality_loader = data[1]
+    if args.fewshots:
+        err, err, err, err, data = get_mvtec_v2(args, train_only=False, with_vaild=False)
+        data_new = []
+        for i, batch in enumerate(data):
+            input = batch[0].squeeze()
+            data_new.append(input)
+            if i == args.fewshots_exm:
+                break
+         data_new = torch.cat(data_new).to(device)
+         data = data_new
 
-
-
-    # data = get_mvtec(args) # the data here has two compoenents: train_loader and test_loader
-    # use cvs file data during traning
-    if args.use_cvs_file == 1:
-        data = get_mvtec_data_cvs(args)
-        from mvtec_train2 import TrainerGMSET, TrainerDAGMM, TrainerDAGMM_2, TrainerDAGMM_3
-    else:
-        from mvtec_train import TrainerGMSET, TrainerDAGMM, TrainerDAGMM_v4
-
-        # data = get_mvtec(args) # the data here has two compoenents: train_loader and test_loader
-        data = get_mvtec_v2(args, with_vaild=False)
-        cardnality_loader = data[1]
-        if args.fewshots:
-            err, err, err, err, data = get_mvtec_v2(args, train_only=False, with_vaild=False)
-            data_new = []
-            for i, batch in enumerate(data):
-                input = batch[0].squeeze()
-                data_new.append(input)
-                if i == args.fewshots_exm:
-                    break
-            data_new = torch.cat(data_new).to(device)
-            data = data_new
-
-        print('batch_size:', args.batch_size)
+    print('batch_size:', args.batch_size)
     from torch.utils.data import DataLoader
 
     print('batch_size:', args.batch_size)
     if args.DAGMM_net == 1:
-        # TrainDAGMM_v4(args, data, device)
         if args.fewshots:
             from sklearn.covariance import LedoitWolf
 
@@ -442,7 +430,6 @@ for obj in range(10, 12):
 
     title2 = '(RFS Energy)'
     print('================================================================')
-    print('Deep RFS')
     auc_score_rf, auc_score2_rf, mean_rf, card_auc_rf,fpr,tpr = eval_MHD(mean_cov, data, device, args, with_card,
                                                                          with_rank,
                                                                              lamda_hat, card_mle)
