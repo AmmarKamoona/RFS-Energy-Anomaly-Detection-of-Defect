@@ -31,7 +31,7 @@ Implemention of the paper "Anomaly Detection of Defect using Energy of Point Pat
   <p align="center">
 <img src="https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect/blob/main/Img/MVTec_fewshot_results.png" width="650">
 </p>
-
+MVTecAD AUC vs shots
 <p align="center">
-<img src="https://github.com/AmmarKamoona/Multiple-Instance-Based-Video-Anomaly-Detection-Using-Deep-Temporal-Encoding-Decoding/blob/main/images/ROC_Shang_V4-1.png" width="650">
+<img src="https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect/blob/main/Img/MVTec_AUC_overshots.png" width="650">
 </p>
