@@ -9,7 +9,7 @@ import pandas as pd
 from utils.utilis import PossionMLE
 from utils.mvtec_utils import get_mvtec
 from utils.utilis import Possion_UnnorLoglike
-from utils.utilis import eval_MHD
+from utils.utilis import eval_MHD,Train_MHVD
 from sklearn.metrics import roc_auc_score, confusion_matrix, auc, roc_curve
 from sklearn.metrics import precision_recall_fscore_support as prf
 from torchvision import transforms as T
@@ -33,29 +33,6 @@ auc_mean_dataset_mah = []
 auc_mean_dataset_rfs_energy = []
 auc_mean_dataset_rfs_like = []
 object_names_list = []
-
-
-
-
-
-def Train_MHVD(args, data, device):
-
-    train_loader = data
-    for i, batch in enumerate(train_loader):
-        input = batch[0]
-        x = input
-        x = x.float()
-        from sklearn.covariance import LedoitWolf
-        from sklearn.decomposition import PCA
-        pca = PCA(n_components=2)
-        # pca.fit(x)
-        # xx=pca.transform(x)
-        # xx=torch.tensor(xx)
-        mean = torch.mean(x, dim=0).detach().cpu().numpy()
-        # covariance estimation by using the Ledoit. Wolf et al. method
-        cov = LedoitWolf().fit(x).covariance_
-
-    return [mean, cov]
 
 
 ax = plt.gca()
