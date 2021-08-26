@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from mvtec_train import PossionMLE
 from utils.mvtec_utils import get_mvtec
-from utils.mvtec_utils import Possion_UnnorLoglike
+from utils import Possion_UnnorLoglike
 from sklearn.metrics import roc_auc_score, confusion_matrix, auc, roc_curve
 from sklearn.metrics import precision_recall_fscore_support as prf
 from torchvision import transforms as T
