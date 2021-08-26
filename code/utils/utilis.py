@@ -183,4 +183,10 @@ class Resize:
         return resize(img, self.size), self.size
 
 
-
+def Possion_UnnorLoglike(lamda, card, with_NLL=False):
+    Loglike = card * torch.log(lamda) - (card + 1).lgamma()
+    # Loglike=card*torch.log(lamda)
+    if not with_NLL:
+        return Loglike
+    if with_NLL:
+        return -Loglike
