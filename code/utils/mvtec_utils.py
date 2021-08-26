@@ -155,7 +155,7 @@ def get_mvtec(args,train_only=True,with_vaild=True):
             return dataloader_train, dataloader_vald, card_trainer
         print('return train_loader, card loader')
         return dataloader_train, card_trainer
-    print('Return train_loader,test_loader batch=1,cardinality loader,train_loader(batch=1)')
+    
 
     return dataloader_train, testloader_set, card_trainer, testloader_set, trainloader_eval
 
