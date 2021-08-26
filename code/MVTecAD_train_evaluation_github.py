@@ -133,6 +133,7 @@ for obj in range(0, 15):
         args.input_dim = 256
     if args.feat_type == "d2_net":
         args.data_dir = config['dataset']['data_dir_d2_net']
+        args.data_dir = args.d2-net-features-path
         args.input_dim = 512
     if args.feat_type == "r2d2":
         args.data_dir = config['dataset']['data_dir_r2d2']
