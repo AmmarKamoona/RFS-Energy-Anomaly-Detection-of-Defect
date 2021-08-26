@@ -322,3 +322,22 @@ def eval_MHD(model, dataloaders, device, args, lamda_hat, card_mle):
     print('ROC AUC score using RFS loglikelihood : {:.2f}%'.format(auc_RFS_like))
 
     return auc_mahal, auc_RFS_energy , auc_RFS_like, fpr, tpr
+
+def Train_MHVD(args, data, device):
+
+    train_loader = data
+    for i, batch in enumerate(train_loader):
+        input = batch[0]
+        x = input
+        x = x.float()
+        from sklearn.covariance import LedoitWolf
+        from sklearn.decomposition import PCA
+        pca = PCA(n_components=2)
+        # pca.fit(x)
+        # xx=pca.transform(x)
+        # xx=torch.tensor(xx)
+        mean = torch.mean(x, dim=0).detach().cpu().numpy()
+        # covariance estimation by using the Ledoit. Wolf et al. method
+        cov = LedoitWolf().fit(x).covariance_
+
+    return [mean, cov]
