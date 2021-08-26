@@ -8,13 +8,14 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from mvtec_train import PossionMLE
 from utils.mvtec_utils import get_mvtec
+from utils.mvtec_utils import Possion_UnnorLoglike
 from sklearn.metrics import roc_auc_score, confusion_matrix, auc, roc_curve
 from sklearn.metrics import precision_recall_fscore_support as prf
 from torchvision import transforms as T
 import torchvision
 from PIL import Image
 import cv2
-
+from sklearn import metrics
 generator = torch.Generator().manual_seed(0)
 np.random.seed(0)
 torch.manual_seed(0)
@@ -24,9 +25,6 @@ import argparse
 import os
 from sklearn.metrics import roc_auc_score
 
-CLASS_NAMES = ['bottle', 'cable', 'capsule', 'carpet', 'grid',
-               'hazelnut', 'leather', 'metal_nut', 'pill', 'screw',
-               'tile', 'toothbrush', 'transistor', 'wood', 'zipper']
 # %%
 
 ## iterate over objects
@@ -34,21 +32,6 @@ auc_mean_dataset_mah = []
 auc_mean_dataset_rfs_energy = []
 auc_mean_dataset_rfs_like = []
 object_names_list = []
-parser = argparse.ArgumentParser()
-parser.add_argument('--settingfile', type=str, default='./settings/DAGMM_v4/set_1.yaml',
-                    help='setting file path:')
-
-args2 = parser.parse_args()
-
-
-##put funtions for now
-def Possion_UnnorLoglike(lamda, card, with_NLL=False):
-    Loglike = card * torch.log(lamda) - (card + 1).lgamma()
-    # Loglike=card*torch.log(lamda)
-    if not with_NLL:
-        return Loglike
-    if with_NLL:
-        return -Loglike
 
 
 def eval_MHD(model, dataloaders, device, args, lamda_hat, card_mle):
@@ -160,11 +143,24 @@ def Train_MHVD(args, data, device):
     return [mean, cov]
 
 
-from torch.utils.data import Dataset
-
 ax = plt.gca()
-# remove the above functions for later use
-for obj in range(10, 12):
+
+# Argument parsing
+parser = argparse.ArgumentParser()
+parser.add_argument('--d2-net-features-path', type=str, default='./d2-net-features/',
+                    help='d2-net-features file path:')
+parser.add_argument('--feat_type', type=str, default='d2_net',help='local/point pattern features types')
+parser.add_argument('--batch_size', type=str, default='full')
+parser.add_argument('--gpu', type=str, default='0')
+parser.add_argument('--rank_mahl', type=int, default=1)
+parser.add_argument('--fewshots', type=int, default=0)
+parser.add_argument('--fewshots_exm', type=int, default=15)
+parser.add_argument('--use_batch_norm', type=int, default=1)
+parser.add_argument('--normalise_data', type=int, default=1)
+
+
+args = parser.parse_args()
+for obj in range(0, 15):
 
     if obj == 0:
         config = './configs/mvtec_bottle_config.yaml'
@@ -232,45 +228,31 @@ for obj in range(10, 12):
 
     object_names_list.append(obj_name)
 
-    class Args:
-
-        with open(settings_file, 'r') as fff:
-            Seting = yaml.safe_load(fff)
-
-        feat_type = Seting['feat_type']
-        feat_type = 'd2_net'
-        batch_size = 'full'
-        gpu = Seting['gpu']
-
-        with open(config, 'r') as f:
-            config = yaml.safe_load(f)
-
-        object = config['dataset']['object']
-        if feat_type == 'lf_net':
-            data_dir = config['dataset']['data_dir_lf_net']
-            input_dim = 256
-        if feat_type == "d2_net":
-            data_dir = config['dataset']['data_dir_d2_net']
-            input_dim = 512
-        if feat_type == "r2d2":
-            data_dir = config['dataset']['data_dir_r2d2']
-            input_dim = 128
-        if feat_type == "sp-sift":
-            data_dir = config['dataset']['sp']['data_dir_sift_desc']
-            input_dim = 128
-        if feat_type == "sp":
-            data_dir = config['dataset']['sp']['data_dir_sp']
-            input_dim = 256
-        use_batch_norm = 1  # AE with batch normalization
-        normalise_data = 1  # perform data normalization techniqies\
-        gpu = '4'
-        rank_mahl = 1
-        fewshots = 0
-        fewshots_exm = 15
 
 
-    args = Args()
 
+
+    with open(config, 'r') as f:
+        config = yaml.safe_load(f)
+
+    args.object = config['dataset']['object']
+    if args.feat_type == 'lf_net':
+        args.data_dir = config['dataset']['data_dir_lf_net']
+        args.input_dim = 256
+    if args.feat_type == "d2_net":
+        args.data_dir = config['dataset']['data_dir_d2_net']
+        args.input_dim = 512
+    if args.feat_type == "r2d2":
+        args.data_dir = config['dataset']['data_dir_r2d2']
+        input_dim = 128
+    if args.feat_type == "sp-sift":
+        args.data_dir = config['dataset']['sp']['data_dir_sift_desc']
+        args.input_dim = 128
+    if args.feat_type == "sp":
+        args.data_dir = config['dataset']['sp']['data_dir_sp']
+        args.input_dim = 256
+
+    print('================================================================')
     print('Running for object:__', obj_name, '__')
     print('feature type', args.feat_type)
     if args.rank_mahl == 0:
@@ -297,11 +279,9 @@ for obj in range(10, 12):
         data_new = torch.cat(data_new).to(device)
         data = data_new
 
-print('batch_size:', args.batch_size)
-from torch.utils.data import DataLoader
+    print('batch_size:', args.batch_size)
 
-print('batch_size:', args.batch_size)
-if args.DAGMM_net == 1:
+
     if args.fewshots:
         from sklearn.covariance import LedoitWolf
 
@@ -313,31 +293,28 @@ if args.DAGMM_net == 1:
     else:
         mean_cov = Train_MHVD(args, data[0], device)
 
-card_mle = PossionMLE(args, cardnality_loader, device)
-lamda_hat = card_mle.comput_lamda()
-data = get_mvtec(args, train_only=False, with_vaild=False)
+    card_mle = PossionMLE(args, cardnality_loader, device)
+    lamda_hat = card_mle.comput_lamda()
+    data = get_mvtec(args, train_only=False, with_vaild=False)
 
-
-title2 = '(RFS Energy)'
-print('================================================================')
-auc_score_mah, auc_score_rfs_energy, auc_score_rfs_likelihood, fpr, tpr = eval_MHD(mean_cov, data, device, args,
+    auc_score_mah, auc_score_rfs_energy, auc_score_rfs_likelihood, fpr, tpr = eval_MHD(mean_cov, data, device, args,
                                                                        lamda_hat, card_mle)
-from sklearn import metrics
 
-auc_score_rfs_energy = np.round(auc_score_rfs_energy, 1)
 
-display1 = metrics.RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=auc_score_rfs_energy, estimator_name=args.object)
+    auc_score_rfs_energy = np.round(auc_score_rfs_energy, 1)
 
-display1.plot(ax=ax)
+    display1 = metrics.RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=auc_score_rfs_energy, estimator_name=args.object)
+
+    display1.plot(ax=ax)
 
 # plt.plot(fpr,tpr)
 
 
-auc_mean_dataset_mah.append(auc_score_mah)
-auc_mean_dataset_rfs_energy.append(auc_score_rfs_energy)
-auc_mean_dataset_rfs_like.append(auc_score_rfs_likelihood)
+    auc_mean_dataset_mah.append(auc_score_mah)
+    auc_mean_dataset_rfs_energy.append(auc_score_rfs_energy)
+    auc_mean_dataset_rfs_like.append(auc_score_rfs_likelihood)
 
-torch.cuda.empty_cache()
+    torch.cuda.empty_cache()
 plt.show()
 # plt.savefig('roc_3.svg', format='svg',dpi=300)
 # %%
