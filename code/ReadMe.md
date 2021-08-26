@@ -9,7 +9,7 @@
 ## Download the D2-net features of MVTec AD dataset from [Here](https://drive.google.com/file/d/1VfY_8HXRwi8_UeTwHrpq6-2lPxrZ6JB_/view?usp=sharing) and place them under d2-net-features directory
 
 
-## Change the directory of the D2_Net features at the configuration file for each category in './configs/
+### Optinal:Change the directory of the D2_Net features at the configuration file for each category in './configs/
 
 
 ## Run the following for training and evaluation 
