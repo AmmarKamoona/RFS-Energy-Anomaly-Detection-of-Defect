@@ -38,7 +38,7 @@ MVTecAD AUC vs shots
 
 Samples of D2-Net Features 
 <p align="center">
-<img src="https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect/blob/main/Img/samples_d2net_features_Page_2.png" width="650">
+<img src="https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect/blob/main/Img/samples_d2net_features_Page_2.jpg" width="650">
 </p>
 
 ## The source code of the paper is placed under [code](https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect/tree/main/code)
