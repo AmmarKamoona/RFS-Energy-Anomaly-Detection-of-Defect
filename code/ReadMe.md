@@ -10,3 +10,8 @@
 
 
 ## Change the directory of the D2_Net features at the configuration file for each category in './configs/
+
+
+##Run the following for training and evaluation 
+
+```python  --d2-net-features-path ```
