@@ -36,4 +36,4 @@ MVTecAD AUC vs shots
 <img src="https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect/blob/main/Img/MVTec_AUC_overshots.png" width="650">
 </p>
 
-## The source code of the paper is placed under code
+## The source code of the paper is placed under [code](https://github.com/AmmarKamoona/RFS-Energy-Anomaly-Detection-of-Defect/tree/main/code)
