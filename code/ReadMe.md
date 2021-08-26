@@ -12,6 +12,6 @@
 ## Change the directory of the D2_Net features at the configuration file for each category in './configs/
 
 
-##Run the following for training and evaluation 
+## Run the following for training and evaluation 
 
-```python  MVTecAD_train_evaluation_github.py --d2-net-features-path ```
+```python  MVTecAD_train_evaluation_github.py --d2-net-features-path './d2-net-features/```
