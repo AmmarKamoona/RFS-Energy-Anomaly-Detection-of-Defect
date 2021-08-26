@@ -190,3 +190,35 @@ def Possion_UnnorLoglike(lamda, card, with_NLL=False):
         return Loglike
     if with_NLL:
         return -Loglike
+
+    
+class PossionMLE:
+    """MLE class for cardinality."""
+    def __init__(self, args, card_loader, device,plot_dis=False):
+        self.args = args
+        self.card_train_loader= card_loader
+       # _, _, self.card_train_loader= data
+        self.device = device
+        self.plot_distribution=plot_dis
+    def compute_loss(self,lamda_hat,x, with_NLL):
+        poss=torch.distributions.poisson.Poisson(lamda_hat)
+        if with_NLL:
+            card_loss= - poss.log_prob(x)
+        else:
+            card_loss = poss.log_prob(x)
+        return  card_loss
+
+    def comput_lamda(self):
+
+        for i,card_data in enumerate(self.card_train_loader):
+            if self.args.fewshots:
+                card_data=card_data[0:self.args.fewshots_exm]
+            lamda_hat=torch.mean(card_data.float().to(self.device))
+            if self.plot_distribution==1:
+                card_mat = card_data.cpu().numpy()
+                import matplotlib.pyplot as plt
+                plt.hist(card_mat,card_mat.shape[0]//2)
+                plt.title(self.args.catogery_name+' cardinality histogram of training samples ')
+                plt.show()
+
+        return lamda_hat
