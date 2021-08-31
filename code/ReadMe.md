@@ -1,7 +1,7 @@
 # Source code of ["Anomaly Detection of Defect using Energy of Point Pattern Features within Random Finite Set Framework"](https://arxiv.org/abs/2108.12159)
 
 ## Install anaconda env
-```conda env create -f environment.yml```
+```conda env create -f rfs.yml```
 
 
 ```conda activate rfs```
