@@ -6,7 +6,8 @@ conda env create --file /path/to/file.txt
 
 ```conda activate rfs```
 
-or 
+## OR
+
 ```conda env create --file rfs.txt```
 
 ```conda activate rfs```
