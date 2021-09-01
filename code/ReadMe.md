@@ -2,7 +2,6 @@
 
 ## Install anaconda env
 ```conda env create -f rfs.yml```
-conda env create --file /path/to/file.txt
 
 ```conda activate rfs```
 
