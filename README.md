@@ -1,5 +1,7 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/anomaly-detection-of-defect-using-energy-of/few-shot-anomaly-detection-on-mvtec-ad)](https://paperswithcode.com/sota/few-shot-anomaly-detection-on-mvtec-ad?p=anomaly-detection-of-defect-using-energy-of)
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/anomaly-detection-of-defect-using-energy-of/anomaly-detection-on-mvtec-ad)](https://paperswithcode.com/sota/anomaly-detection-on-mvtec-ad?p=anomaly-detection-of-defect-using-energy-of)
+
 # RFS-Energy-Anomaly-Detection-of-Defect
 Implemention of the paper ["Anomaly Detection of Defect using Energy of Point Pattern Features within Random Finite Set Framework"](https://arxiv.org/abs/2108.12159)
 
